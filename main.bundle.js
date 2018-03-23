@@ -132,6 +132,8 @@ var AdminComponent = /** @class */ (function () {
             var reader = new FileReader();
             reader.readAsDataURL(event.target.files[0]); // read file as data url
             reader.onloadend = function (event) {
+                alert("image uploaded successfully");
+                _this.updaterecord();
                 _this.model.image = reader.result;
             };
         }
@@ -156,10 +158,11 @@ var AdminComponent = /** @class */ (function () {
     AdminComponent.prototype.updaterecord = function () {
         this.participantsCollectionRef.doc(this.selectedId).update(this.model)
             .then(function (data) {
-            console.log(data);
+            alert("updated successfully");
         })
             .catch(function (err) {
             console.log(err);
+            alert("could not update...");
         });
     };
     AdminComponent.prototype.delete = function () {
